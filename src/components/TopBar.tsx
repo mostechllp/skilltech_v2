@@ -9,8 +9,11 @@ import {
   Phone,
   Mail,
   ChevronDown,
-  Globe
+  Globe,
+  MessageCircle
 } from 'lucide-react';
+import { BsWhatsapp } from 'react-icons/bs';
+import { FaWhatsapp } from 'react-icons/fa';
 
 export function TopBar() {
   const { t, i18n } = useTranslation();
@@ -59,33 +62,47 @@ export function TopBar() {
       <div className="flex items-center gap-2">
         <a
           href="#"
+          className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center hover:bg-pink-accent transition-colors sm:flex"
+          aria-label="LinkedIn"
+        >
+          <Linkedin className="w-3.5 h-3.5" />
+        </a>
+        <a
+          href="#"
           className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center hover:bg-pink-accent transition-colors"
+          aria-label="Facebook"
         >
           <Facebook className="w-3.5 h-3.5" />
         </a>
         <a
           href="#"
           className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center hover:bg-pink-accent transition-colors"
+          aria-label="Instagram"
         >
           <Instagram className="w-3.5 h-3.5" />
         </a>
         <a
           href="#"
+          className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center hover:bg-pink-accent transition-colors sm:flex"
+          aria-label="YouTube"
+        >
+          <Youtube className="w-3.5 h-3.5" />
+        </a>
+        <a
+          href="#"
           className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center hover:bg-pink-accent transition-colors"
+          aria-label="Twitter"
         >
           <Twitter className="w-3.5 h-3.5" />
         </a>
         <a
-          href="#"
-          className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center hover:bg-pink-accent transition-colors sm:flex"
+          href="https://wa.me/971509637077"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center hover:bg-pink-accent transition-colors"
+          aria-label="WhatsApp"
         >
-          <Linkedin className="w-3.5 h-3.5" />
-        </a>
-        <a
-          href="#"
-          className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center hover:bg-pink-accent transition-colors sm:flex"
-        >
-          <Youtube className="w-3.5 h-3.5" />
+          <FaWhatsapp className="w-3.5 h-3.5" />
         </a>
       </div>
 
@@ -107,7 +124,7 @@ export function TopBar() {
         </a>
         <a
           href="tel:+97142347770"
-          className="flex items-center gap-1.5 hover:text-pink-accent transition-colors hidden lg:flex"
+          className="flex items-center gap-1.5 hover:text-pink-accent transition-colors"
         >
           <Phone className="w-4 h-4" />
           <span>+971 4 234 7770</span>
