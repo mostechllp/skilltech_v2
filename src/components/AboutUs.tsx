@@ -1,3 +1,4 @@
+// AboutUs.jsx
 import React, { useState } from "react";
 import { useTranslation } from 'react-i18next';
 import { PlayCircle, ChevronDown, Globe, Users, Award, Shield, CheckCircle } from "lucide-react";
@@ -9,7 +10,6 @@ import about3 from "../assets/images/about_us/about3.webp";
 
 export function AboutUs() {
   const { t } = useTranslation();
-  const [isExpanded, setIsExpanded] = useState(false);
 
   // Feature highlights
   const features = [
@@ -87,87 +87,63 @@ export function AboutUs() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="w-full lg:w-1/2"
+            className="w-full lg:w-1/2 flex flex-col justify-between h-full"
           >
-            <SectionHeading className="mb-3 md:mb-4 text-left">
-              {t('aboutUs')}
-            </SectionHeading>
-            
-            {/* Desktop: Full text */}
-            <div className="hidden lg:block space-y-3 text-slate-600 text-sm md:text-base leading-relaxed">
-              <p>
-                <strong className="text-navy">{t('welcomeToSkillMount')}</strong>
-                {t('aboutUsParagraph1')}
-              </p>
-              <p>
-                {t('aboutUsParagraph2')}
-              </p>
-              <p>
-                {t('aboutUsParagraph3')}
-              </p>
-            </div>
+            <div>
+              <SectionHeading className="mb-3 md:mb-4 text-left">
+                {t('aboutUs')}
+              </SectionHeading>
+              
+              {/* Desktop: Full text */}
+              <div className="hidden lg:block space-y-3 text-slate-600 text-sm md:text-base leading-relaxed">
+                <p>
+                  <strong className="text-navy">{t('welcomeToSkillMount')}</strong>
+                  {t('aboutUsParagraph1')}
+                </p>
+                <p>
+                  {t('aboutUsParagraph2')}
+                </p>
+                <p>
+                  {t('aboutUsParagraph3')}
+                </p>
+              </div>
 
-            {/* Mobile/Tablet: Truncated text */}
-            <div className="lg:hidden">
-              <div className="space-y-3 text-slate-600 text-sm leading-relaxed text-left">
+              {/* Mobile/Tablet: Full text without truncation */}
+              <div className="lg:hidden space-y-3 text-slate-600 text-sm leading-relaxed text-left">
                 <p>
                   <strong className="text-navy">{t('welcomeToSkillMount')}</strong>
                   {t('aboutUsParagraph1Mobile')}
-                  {!isExpanded && "..."}
                 </p>
-                
-                {isExpanded && (
-                  <>
-                    <p>
-                      {t('aboutUsParagraph2Mobile')}
-                    </p>
-                    <p>
-                      {t('aboutUsParagraph3Mobile')}
-                    </p>
-                  </>
-                )}
+                <p>
+                  {t('aboutUsParagraph2Mobile')}
+                </p>
+                <p>
+                  {t('aboutUsParagraph3Mobile')}
+                </p>
               </div>
 
-              <div className="flex justify-start mt-4">
-                <button
-                  onClick={() => setIsExpanded(!isExpanded)}
-                  className="flex items-center gap-1 text-pink-accent text-sm font-medium hover:text-pink-600 transition-colors"
-                >
-                  {isExpanded ? t('readLess') : t('readMore')}
-                  <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
-                </button>
+              {/* Features Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
+                {features.map((feature, idx) => {
+                  const Icon = feature.icon;
+                  return (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.3 + idx * 0.1 }}
+                      className="flex items-start gap-2 bg-white/60 rounded-lg p-2.5 hover:bg-white transition-colors"
+                    >
+                      <Icon className="w-4 h-4 text-pink-accent flex-shrink-0 mt-0.5" />
+                      <div>
+                        <h4 className="text-navy text-sm font-semibold">{t(feature.titleKey)}</h4>
+                        <p className="text-slate-500 text-[10px] leading-tight">{t(feature.descKey)}</p>
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
-            </div>
-
-            {/* Features Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
-              {features.map((feature, idx) => {
-                const Icon = feature.icon;
-                return (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 + idx * 0.1 }}
-                    className="flex items-start gap-2 bg-white/60 rounded-lg p-2.5 hover:bg-white transition-colors"
-                  >
-                    <Icon className="w-4 h-4 text-pink-accent flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="text-navy text-xs font-semibold">{t(feature.titleKey)}</h4>
-                      <p className="text-slate-500 text-[10px] leading-tight">{t(feature.descKey)}</p>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-
-            {/* CTA Button - Left aligned */}
-            <div className="flex justify-start mt-5">
-              <button className="flex items-center gap-2 bg-pink-accent text-white px-5 py-2.5 rounded-full hover:bg-pink-600 transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 group text-sm">
-                <PlayCircle className="w-4 h-4 fill-white/20 group-hover:translate-x-1 transition-transform" />
-                <span className="font-medium">{t('readMore')}</span>
-              </button>
             </div>
           </motion.div>
         </div>

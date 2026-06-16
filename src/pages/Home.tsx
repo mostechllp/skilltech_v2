@@ -26,7 +26,7 @@ export function Home() {
         <Hero />
         <BrowseCategory />
         <AboutUs />
-        <ExploreProducts />
+        {/* <ExploreProducts /> */}
         <StatsBand />
         <ProductGrid />
         <Services />

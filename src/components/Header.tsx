@@ -1,3 +1,4 @@
+// Header.jsx
 import React, { useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Search, ChevronDown, Menu, X, ChevronRight } from 'lucide-react';
@@ -94,7 +95,6 @@ export function Header() {
 
   return (
     <>
-      
       <header
         className={`sticky top-0 z-40 w-full transition-all duration-300 ${
           isScrolled ? 'bg-white shadow-md py-2' : 'bg-lavender-light py-4'
@@ -116,7 +116,7 @@ export function Header() {
                         onClick={() => toggleDropdown(link.key)}
                         className={`text-sm font-medium flex items-center gap-1 transition-colors hover:text-pink-accent ${
                           link.active 
-                            ? 'text-navy font-bold border-b-2 border-navy pb-1' 
+                            ? 'text-navy font-bold border-b-2 border-navy pb-0.5' 
                             : 'text-slate-700'
                         }`}
                       >
@@ -172,7 +172,7 @@ export function Header() {
                       href="#"
                       className={`text-sm font-medium flex items-center gap-1 transition-colors hover:text-pink-accent ${
                         link.active 
-                          ? 'text-navy font-bold border-b-2 border-navy pb-1' 
+                          ? 'text-navy font-bold border-b-2 border-navy pb-0.5' 
                           : 'text-slate-700'
                       }`}
                     >

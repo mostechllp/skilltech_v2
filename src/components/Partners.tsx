@@ -1,4 +1,4 @@
-// Partners.jsx - Updated with reduced bottom padding
+// Partners.jsx - Updated with map background
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { PillBadge } from './ui/PillBadge';
@@ -21,6 +21,9 @@ import partner_lulu from "../assets/images/partners/lulu.webp";
 import partner_movenpick from "../assets/images/partners/MovenPick.webp";
 import partner_sharaf_dg from "../assets/images/partners/Sharaf_DG.webp";
 import partner_trigon from "../assets/images/partners/Trigon.webp";
+
+// Import map background
+import mapBg from "../assets/images/map.jpeg";
 
 const partners = [
   { nameKey: 'alFuttaim', logo: partner_al_futtaim },
@@ -46,64 +49,20 @@ export function Partners() {
  
   const duplicatedPartners = [...partners, ...partners, ...partners];
  
-  // Hub points on the watermark map — representing partner regions
-  // (positioned as % of a 1000x500 world-map viewBox)
-  const hubs = [
-    { x: 565, y: 235, delay: '0s' },    // Gulf / UAE
-    { x: 480, y: 150, delay: '0.6s' },  // Europe
-    { x: 720, y: 195, delay: '1.2s' },  // South/East Asia
-    { x: 230, y: 175, delay: '1.8s' },  // North America
-  ];
- 
   return (
     <section className="relative py-14 md:py-16 pb-8 md:pb-10 bg-white border-t border-slate-100 overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
-      {/* World map watermark signature */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-        <svg
-          viewBox="0 0 1000 500"
-          className="w-[140%] md:w-[110%] max-w-none opacity-[0.05]"
-          aria-hidden="true"
-        >
-          <g fill="#1B2A52">
-            {/* Simplified dot-grid continents */}
-            {Array.from({ length: 50 }).map((_, row) =>
-              Array.from({ length: 100 }).map((_, col) => {
-                const x = col * 10;
-                const y = row * 10;
-                // crude landmass mask using a few rectangular bands to suggest continents
-                const inLand =
-                  (x > 150 && x < 300 && y > 120 && y < 260) || // N. America
-                  (x > 260 && x < 340 && y > 280 && y < 420) || // S. America
-                  (x > 440 && x < 560 && y > 100 && y < 220) || // Europe
-                  (x > 440 && x < 620 && y > 220 && y < 400) || // Africa
-                  (x > 560 && x < 820 && y > 130 && y < 320) || // Asia
-                  (x > 800 && x < 900 && y > 350 && y < 420);   // Australia
-                if (!inLand || Math.random() > 0.55) return null;
-                return <circle key={`${row}-${col}`} cx={x} cy={y} r="2.2" />;
-              })
-            )}
-          </g>
-          {/* Pulsing hub markers */}
-          {hubs.map((hub, i) => (
-            <g key={i}>
-              <circle cx={hub.x} cy={hub.y} r="5" fill="#EC4899" opacity="0.9" />
-              <circle
-                cx={hub.x}
-                cy={hub.y}
-                r="5"
-                fill="#EC4899"
-                opacity="0.5"
-                style={{
-                  transformOrigin: `${hub.x}px ${hub.y}px`,
-                  animation: `partnerPulse 2.4s ease-out infinite`,
-                  animationDelay: hub.delay,
-                }}
-              />
-            </g>
-          ))}
-        </svg>
-      </div>
- 
+      {/* Map Background with better visibility */}
+      <div 
+        className="absolute inset-0 w-full h-full"
+        style={{
+          backgroundImage: `url(${mapBg})`,
+          backgroundPosition: 'center 1%',
+        }}
+      />
+      
+      {/* Subtle gradient overlay for better readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/50 to-white/70" />
+
       <div className="container mx-auto px-4 md:px-8 flex flex-col items-center relative z-10">
         <PillBadge text={t('thoseWhoTrustOurExpertise')} className="mb-3" />
         <SectionHeading align="center" className="mb-2">
@@ -122,7 +81,7 @@ export function Partners() {
               {duplicatedPartners.map((partner, idx) => (
                 <div
                   key={idx}
-                  className="flex-none w-36 md:w-44 h-24 md:h-28 flex items-center justify-center bg-white rounded-2xl border border-slate-100 shadow-[0_2px_10px_rgba(27,42,82,0.04)] transition-all duration-300 hover:-translate-y-1 hover:border-pink-accent/30 hover:shadow-[0_8px_24px_rgba(236,72,153,0.12)]"
+                  className="flex-none w-36 md:w-44 h-24 md:h-28 flex items-center justify-center bg-white rounded-2xl border border-slate-200 shadow-[0_2px_10px_rgba(27,42,82,0.04)] transition-all duration-300 hover:-translate-y-1 hover:border-pink-accent/30 hover:shadow-[0_8px_24px_rgba(236,72,153,0.12)]"
                 >
                   <img
                     src={partner.logo}
@@ -147,11 +106,6 @@ export function Partners() {
         @keyframes infiniteScroll {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
-        }
- 
-        @keyframes partnerPulse {
-          0% { transform: scale(1); opacity: 0.6; }
-          100% { transform: scale(3.2); opacity: 0; }
         }
  
         .animate-infinite-scroll {

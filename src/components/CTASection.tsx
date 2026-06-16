@@ -60,7 +60,8 @@ export function CTASection() {
               </span>
 
               <h2 className="mt-4 text-2xl font-bold leading-tight text-navy sm:text-3xl md:text-4xl">
-                {t('getScreenMountedByExperts')}
+                {/* Using dangerouslySetInnerHTML to render <br /> properly */}
+                <span dangerouslySetInnerHTML={{ __html: t('getScreenMountedByExperts') }} />
               </h2>
 
               <p className="mt-3 text-sm leading-relaxed text-slate-600 md:text-base">
