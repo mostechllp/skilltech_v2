@@ -1,0 +1,92 @@
+/* @import url() FONT IMPORTS MUST ALWAYS BE AT THE VERY TOP OF THIS FILE, ABOVE THE TAILWIND IMPORTS — DO NOT DELETE THIS COMMENT */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* CRITICAL: THE FOLLOWING TAILWIND IMPORTS MUST NEVER BE DELETED OR REORDERED — DO NOT DELETE THIS COMMENT */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* END TAILWIND IMPORTS — ALL OTHER CSS MUST GO BELOW THIS LINE */
+
+@layer base {
+  html {
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply text-slate-800 bg-white;
+  }
+}
+@layer utilities {
+  .text-navy {
+    color: #1e3a8a;
+  }
+  .bg-navy {
+    background-color: #0c1d56;
+  }
+  .bg-navy-light {
+    background-color: #1e3a8a;
+  }
+  .text-pink-accent {
+    color: #e6007e;
+  }
+  .bg-pink-accent {
+    background-color: #e6007e;
+  }
+  .border-pink-accent {
+    border-color: #e6007e;
+  }
+  .bg-lavender-light {
+    background-color: #eef2fb;
+  }
+  .bg-lavender-alt {
+    background-color: #e9edfb;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .flex-row {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  margin-right: 0.5rem;
+  margin-left: 0;
+}
+
+/* Mega Menu Animation */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.absolute.top-full.mt-2 {
+  animation: fadeInDown 0.2s ease-out;
+}
+
+/* Rotate animation for chevron */
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+/* Smooth transition for mobile dropdown */
+#mobile-dropdown-products {
+  transition: all 0.3s ease;
+}
